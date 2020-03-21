@@ -10,6 +10,7 @@ Set of scripts to protect an e-chat from bad actors and bad behavior
 ## Running EFilters
 
 First, copy the contents of the file fc-master-filter.js to the clipboard.
-Then in your moderator browser, open the Developer Tools and locate the console
-tool. Paste the contents of the fc-master-filter.js into the console,
+Then in your moderator browser, open the Developer Tools and locate the Console
+tool. Paste the contents of the fc-master-filter.js into the Console,
 then close the Developers Tools.
+
