@@ -7,6 +7,8 @@ Set of scripts to protect an e-chat from bad actors and bad behavior
 
 ## Getting Started
 
+TBD
+
 ## Running EFilters
 
 First, copy the contents of the file fc-master-filter.js to the clipboard.
