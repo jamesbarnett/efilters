@@ -11,3 +11,4 @@ end
 task :clean do
   puts `rm fc-master-filter.js`
 end
+
