@@ -32,7 +32,7 @@ var kickAccountAndRemoveMessages = function(userUuid) {
 var vicFilter = function(x) {
   if (vicNicks.indexOf(x.data.username.toUpperCase()) != -1) {
     kickAccountAndRemoveMessages(x.data.userUuid);
-    console.log('Kicked user ' + x.data.username);
+    console.log('vic-filter: Kicked user ' + x.data.username);
   }
 };
 
@@ -47,7 +47,7 @@ var emmaPleasFilter = function(x) {
 
   if (vicPhrases.indexOf(post) != -1) {
     kickAccountAndRemoveMessages(x.data.userUuid);
-    console.log('Kicked user ' + x.data.username);
+    console.log('vic-filter: emmaPleas: Kicked user ' + x.data.username);
   }
 };
 
