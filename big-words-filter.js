@@ -54,7 +54,7 @@ var checkLastWarning = function(warningType, username, userUuid) {
   manageViolationLedger(username, ts);
   
   if (countViolations(username)) {
-    console.log("kicking username: " + username);
+    console.log("bigWordFilter: kicking username: " + username);
     CometdModerator.kickAccount(userUuid);
   }
 
