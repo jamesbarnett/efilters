@@ -1,4 +1,4 @@
-var gihPhrases = [/RAPE A BABY/, /RAPE BABIES/, /\bRAPES\b/, /\bRAPED\b/];
+var gihPhrases = [/\bRAPE A BABY/, /\bRAPE BABIES/, /\bRAPES\b/, /\bRAPED\b/];
 
 var checkGihMessages = function(message) {
   var uc = message.toUpperCase();
@@ -16,7 +16,7 @@ var gihFilter = function(x) {
 
   if (checkGihMessages(message)) {
     CometdModerator.kickAccount(x.data.userUuid);
-    console.log("kicking user: " + x.data.username);
+    console.log("GiHFilter: kicking user: " + x.data.username);
     CometdModerator.removeAccountMessages(x.data.userUuid);
   }
 };
