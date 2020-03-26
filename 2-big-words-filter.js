@@ -47,6 +47,18 @@ var countViolations = function(username) {
   return bigWordsViolationLedger[username].length > 2;
 };
 
+var unbanAccount = function(userUuid, username) {
+  CometdModerator.unbanAccount(userUuid);
+  console.log("User " + username + " unbanned");
+};
+
+var _banDuration = 10 * 60 * 1000;
+
+var scheduleUnban = function(userUuid, username) {
+  console.log("Scheduling unban for user: " + username);
+  setTimeout(unbanAccount, _banDuration, userUuid, username);
+};
+
 var checkLastWarning = function(warningType, username, userUuid) {
   console.log("lastWarningTimestamp: " + lastWarningTimestamp + ", Date.now() " + Date.now() / 1000);
   var ts = Date.now() / 1000;
@@ -55,7 +67,9 @@ var checkLastWarning = function(warningType, username, userUuid) {
   
   if (countViolations(username)) {
     console.log("bigWordFilter: kicking username: " + username);
-    CometdModerator.kickAccount(userUuid);
+    // CometdModerator.kickAccount(userUuid);
+    CometdModerator.banAccount(userUuid);
+    scheduleUnban(userUuid, username);
   }
 
   if (ts - lastWarningTimestamp > delayInterval) {
