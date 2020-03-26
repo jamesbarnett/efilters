@@ -1,3 +1,4 @@
+
 var delayInterval = 15; // The interval in seconds
 var fbomb = 1;
 var nbomb = 2;
@@ -48,18 +49,6 @@ var manageViolationLedger = function(username, timestamp) {
 // Checks to see if user has violated the 3 strike rule
 var countViolations = function(username) {
   return bigWordsViolationLedger[username].length > 2;
-};
-
-var unbanAccount = function(userUuid, username) {
-  CometdModerator.unbanAccount(userUuid);
-  console.log("User " + username + " unbanned");
-};
-
-var _banDuration = 10 * 60 * 1000; // Ban accout for 10 minutes
-
-var scheduleUnban = function(userUuid, username) {
-  console.log("Scheduling unban for user: " + username);
-  setTimeout(unbanAccount, _banDuration, userUuid, username);
 };
 
 // Trying to keep trolls from using NC's warnings to spam
