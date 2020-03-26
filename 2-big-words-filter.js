@@ -3,7 +3,7 @@ var fbomb = 1;
 var nbomb = 2;
 var pbomb = 3;
 var bigWordsViolationLedger = {};
-var expireInterval = 300; // 5 minutes not sure about that
+var expireInterval = 5 * 60; // 5 minutes not sure about that
 var lastWarningTimestamp = null;
 var pedoFilter = /\bPEDO\b/;
 
@@ -22,6 +22,7 @@ var issueWarning = function(warningType, username, userUuid) {
   }
 };
 
+// keeps track of infractions
 var addViolation = function(username, timestamp) {
   if (bigWordsViolationLedger[username] == null) {
     bigWordsViolationLedger[username] = [];
@@ -30,6 +31,7 @@ var addViolation = function(username, timestamp) {
   bigWordsViolationLedger[username].unshift(timestamp);
 };
   
+// Removes offenses older than the expire interval
 var expireViolations = function(username) {
   var now = Date.now() / 1000;
   
@@ -43,6 +45,7 @@ var manageViolationLedger = function(username, timestamp) {
   expireViolations(username);
 };
 
+// Checks to see if user has violated the 3 strike rule
 var countViolations = function(username) {
   return bigWordsViolationLedger[username].length > 2;
 };
@@ -52,19 +55,20 @@ var unbanAccount = function(userUuid, username) {
   console.log("User " + username + " unbanned");
 };
 
-var _banDuration = 10 * 60 * 1000;
+var _banDuration = 10 * 60 * 1000; // Ban accout for 10 minutes
 
 var scheduleUnban = function(userUuid, username) {
   console.log("Scheduling unban for user: " + username);
   setTimeout(unbanAccount, _banDuration, userUuid, username);
 };
 
+// Trying to keep trolls from using NC's warnings to spam
 var checkLastWarning = function(warningType, username, userUuid) {
   console.log("lastWarningTimestamp: " + lastWarningTimestamp + ", Date.now() " + Date.now() / 1000);
   var ts = Date.now() / 1000;
 
   manageViolationLedger(username, ts);
-  
+
   if (countViolations(username)) {
     console.log("bigWordFilter: kicking username: " + username);
     // CometdModerator.kickAccount(userUuid);
@@ -72,6 +76,7 @@ var checkLastWarning = function(warningType, username, userUuid) {
     scheduleUnban(userUuid, username);
   }
 
+  // Trying to keep trolls from using NC's warnings to spam
   if (ts - lastWarningTimestamp > delayInterval) {
     issueWarning(warningType, username, ts);
     lastWarningTimestamp = Date.now() / 1000;
