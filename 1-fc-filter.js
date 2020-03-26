@@ -1,9 +1,3 @@
-// When we find someone bad, we kick them out and remove their posts
-var kickAccountAndRemovePosts = function(userUuid) {
-  CometdModerator.kickAccount(userUuid);
-  CometdModerator.removeAccountMessages(userUuid);
-};
-
 // We don't want guests in FC... they cause most of the problems
 var noGuests = function(x) {
   if (x.data.isGuest) {

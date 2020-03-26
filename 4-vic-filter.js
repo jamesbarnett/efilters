@@ -20,11 +20,6 @@ var vicNicks = [
   x.toUpperCase();
 });
 
-var kickAccountAndRemoveMessages = function(userUuid) {
-  CometdModerator.kickAccount(userUuid);
-  CometdModerator.removeAccountMessages(userUuid);
-}; 
-
 /*
  * To add additional nicks at runtime, open the broswer console and type
  * `vicNicks.push('<newNick>');
