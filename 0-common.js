@@ -22,10 +22,8 @@ var tempBan = function(userUuid, username, banDuration) {
   scheduleUnban(userUuid, username, durationInMs);
 };
 
-var findUserByName = function(username) {
+var findUserByNameHelper = function(username) {
   var user = null;
-
-  var re = new RegExp(username + "\$");
 
   $.ajax({
     url : '/search/users',
@@ -35,21 +33,43 @@ var findUserByName = function(username) {
     },
     success : function(jsonReply) { 
       var accounts = JSON.parse(jsonReply);
+      var re = new RegExp(username + "\$");
       
-      accounts = accounts.filter(function(e) {
-        return e.data.username.match(re);
-      });
+      console.log("first search accounts: %O", accounts);
+
+      if (accounts.length > 1) {
+        accounts = accounts.filter(function(e) {
+          return e.data.username.match(re);
+        });
+      }
+
+      console.log("second search accounts: %O", accounts);
 
       if (accounts.length == 1) {
         user = accounts[0].data;
-      } else {
+      } else if (accounts.length > 1) {
         console.log("Search for username " + username + " returned multiple results");
+      } else {
+        console.log("Search for username " + username + " return no results");
       }
     },
     error : function() {
       console.log("An error occurred.");
     }
   });
+
+  return user;
+};
+
+var findUserByName = function(username) {
+  let user = null;
+  let tries = 0;
+  let retries = 3;
+
+  while (tries < retries && user == null) {
+    user = findUserByNameHelper(username);
+    ++tries;
+  }
 
   return user;
 };
