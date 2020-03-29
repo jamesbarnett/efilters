@@ -3,14 +3,14 @@
 Set of scripts to protect an e-chat from bad actors and bad behavior
 
 1. [Getting Started](#getting-started)
-2. [Tablet/Mobile Users(#mobile-users)
+2. [Tablet/Mobile Users](#mobile-users)
 3. [Running EFliters](#running-efilters)
 4. [Advanced (Temporary Bans)](#advanced)
 ## Getting Started
 
 TBD
 
-## Tablet Mobile Users
+## Tablet/Mobile Users
 
 Unfortunately, unless you are on an iPad, I don't think there is an easy was to 
 run the shields. If you find a way to access browser developer tools, please 
