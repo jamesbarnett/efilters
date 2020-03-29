@@ -3,7 +3,7 @@
 Set of scripts to protect an e-chat from bad actors and bad behavior
 
 1. [Getting Started](#getting-started)
-2. [Tablet and Mobile Users](#tablet-mobile-users)
+2. [Tablet and Mobile Users](#tablet-and-mobile-users)
 3. [Running EFliters](#running-efilters)
 4. [Advanced](#advanced)
 ## Getting Started
