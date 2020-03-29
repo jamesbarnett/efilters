@@ -18,6 +18,7 @@ var tempBan = function(userUuid, username, banDuration) {
   var durationInMs = banDuration * 60 * 1000;
 
   CometdModerator.banAccount(userUuid);
+  CometdModerator.removeAccountMessages(userUuid);
   console.log("Banning account " + username + ", " + userUuid);
   scheduleUnban(userUuid, username, durationInMs);
 };
