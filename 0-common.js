@@ -14,6 +14,14 @@ var scheduleUnban = function(userUuid, username, banDuration) {
   setTimeout(unbanAccount, banDuration, userUuid, username);
 };
 
+var timeoutDan = function(duration) {
+  var dansUuids = [ "fe340c0b-73c0-4d0a-b3c4-a1d646082969",
+                    "e1c83d8b-e110-42a5-9127-b4b8cdff44fb" ];
+
+  CometdModerator.banAccount(dansUuid);
+  scheduleUnban(dansUuid, "Dan", duration * 1000 * 60);
+};
+
 var tempBan = function(userUuid, username, banDuration) {
   var durationInMs = banDuration * 60 * 1000;
 
@@ -89,12 +97,6 @@ var timeoutUser = function(username, duration) {
   } else {
     console.log('timeoutUser failed');
   }
-};
-
-var timeoutDan = function(duration) {
-  var dansUuid = "fe340c0b-73c0-4d0a-b3c4-a1d646082969";
-  CometdModerator.banAccount(dansUuid);
-  scheduleUnban(dansUuid, "Dan", duration * 1000 * 60);
 };
 
 /*
