@@ -91,6 +91,12 @@ var timeoutUser = function(username, duration) {
   }
 };
 
+var timeoutDan = function(duration) {
+  var dansUuid = "fe340c0b-73c0-4d0a-b3c4-a1d646082969";
+  CometdModerator.banAccount(dansUuid);
+  scheduleUnban(dansUuid, "Dan", duration * 1000 * 60);
+};
+
 /*
  * Call this function from the console to set an exipiration on a manual ban.
  *   username - The user's nickname
