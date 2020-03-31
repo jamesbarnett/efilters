@@ -5,12 +5,17 @@ var noGuests = function(x) {
   }
 };
 
+var reRword = /\bRAPE/;
+var rePword = /\bPEDO\b/;
+var reVolatileEquals = /\bVOLATILE = /;
+
 // No F-bombs, N-Bombs, or C-Words in usernames
 var noOffensiveNicks = function(x) {
   var ucUserName = x.data.username.toUpperCase();
   if (ucUserName.includes('FUCK') || ucUserName.includes('NIGGER') || 
       ucUserName.includes('NIGGA') || ucUserName.includes('CUNT') ||
-      ucUserName.endsWith(":D")) {
+      ucUserName.endsWith(":D") || ucUserName.match(reRword) ||
+      ucUserName.match(rePword) || ucUserName.match(reVolatileEquals)) {
     kickAccountAndRemovePosts(x.data.userUuid);
     console.log("Kicked user for offensive nick:" + x.data.username);
   }
