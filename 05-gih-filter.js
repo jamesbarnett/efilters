@@ -17,9 +17,9 @@ var gihFilter = function(x) {
   if (checkGihMessages(message)) {
     CometdModerator.kickAccount(x.data.userUuid);
     console.log("GiHFilter: kicking user: " + x.data.username);
-    // CometdModerator.removeAccountMessages(x.data.userUuid);
+    CometdModerator.removeAccountMessages(x.data.userUuid);
     console.log("GihFilter: banning account " + x.data.username);
-    CometdModerator.banAccount(x.data.userUuid, x.data.username);
+    // CometdModerator.banAccount(x.data.userUuid, x.data.username);
     setTimeout(unbanAccount, _banDuration, x.data.userUuid, x.data.username);
   }
 };

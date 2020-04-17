@@ -1,12 +1,14 @@
-
 var delayInterval = 15; // The interval in seconds
 var fbomb = 1;
 var nbomb = 2;
 var pbomb = 3;
+var cword = 4;
+var rword = 5;
 var bigWordsViolationLedger = {};
 var expireInterval = 5 * 60; // 5 minutes not sure about that
 var lastWarningTimestamp = null;
-var pedoFilter = /\bPEDO\b/;
+var pedoFilter = /\bPEDOS?\b/;
+var rwordFilter = /\bR[A@]PE[SD]?\b/;
 
 var checkWarningAndViolations = function(warningType, x) {
   CometdModerator.removeAccountMessages(x.data.userUuid);
@@ -19,7 +21,9 @@ var issueWarning = function(warningType, username, userUuid) {
   } else if (warningType == nbomb) {
     CometdRoom.sendMessage("Language please, " + username + ", no N-words here.");
   } else if (warningType == pbomb) {
-    CometdRoom.sendMessage("We don't accuse people of that here, " + username);
+    CometdRoom.sendMessage("We don't discuss that topic, " + username);
+  } else if (warningType == cword) {
+    CometdRoom.sendMessage("Language please, " + username + ", no C-words here.");
   }
 };
 
@@ -73,7 +77,7 @@ var checkLastWarning = function(warningType, username, userUuid) {
 };
 
 var bigWordsFilter = function(x) {
-  var message = x.data.messageBody.toUpperCase();
+  var message = x.data.messageBody.toUpperCase().replace(/\./g, '');
 
   if (message.includes('FUCK')) {
     checkWarningAndViolations(fbomb, x);
@@ -81,6 +85,10 @@ var bigWordsFilter = function(x) {
     checkWarningAndViolations(nbomb, x);
   } else if (message.match(pedoFilter)) {
     checkWarningAndViolations(pbomb, x);
+  } else if (message.match(rwordFilter)) {
+    checkWarningAndViolations(rword, x);
+  } else if (message.includes('CUNT')) {
+    checkWarningAndViolations(cword, x);
   }
 };
 

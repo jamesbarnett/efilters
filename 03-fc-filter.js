@@ -7,7 +7,8 @@ var noGuests = function(x) {
 
 var reRword = /\bRAPE/;
 var rePword = /\bPEDO\b/;
-var reVolatileEquals = /\bVOLATILE = /;
+var reEquals = /\s=\s/;
+var reTargets = /(VOLATILE=|MSTSP=|TSP=)/;
 
 // No F-bombs, N-Bombs, or C-Words in usernames
 var noOffensiveNicks = function(x) {
@@ -15,7 +16,8 @@ var noOffensiveNicks = function(x) {
   if (ucUserName.includes('FUCK') || ucUserName.includes('NIGGER') || 
       ucUserName.includes('NIGGA') || ucUserName.includes('CUNT') ||
       ucUserName.endsWith(":D") || ucUserName.match(reRword) ||
-      ucUserName.match(rePword) || ucUserName.match(reVolatileEquals)) {
+      ucUserName.match(rePword) || ucUserName.match(reEquals) ||
+      ucUserName.match(reTargets)) {
     kickAccountAndRemovePosts(x.data.userUuid);
     console.log("Kicked user for offensive nick:" + x.data.username);
   }
