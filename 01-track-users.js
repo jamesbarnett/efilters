@@ -4,9 +4,8 @@ var usersInRoom = [];
 var trackUserJoin = function(x) {
   delete x.data.timestamp;
 
-  console.log("trackUsers: adding %O", x.data.username);
-
-  if (!usersInRoom.find((x) => e.username == x.data.username )) {
+  if (!usersInRoom.find((e) => e.username == x.data.username )) {
+    console.log("trackUsers: adding %O", x.data.username);
     usersInRoom.push(x.data);
   }
 };

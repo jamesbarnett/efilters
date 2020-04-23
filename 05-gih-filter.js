@@ -1,4 +1,4 @@
-var gihPhrases = [/\bRAPE A BABY/, /\bRAPE BABIES/, /\bRAPES\b/, /\bRAPED\b/];
+var gihPhrases = [/\bRAPE A BABY/, /\bRAPE BABIES/, /\bRAPES\b/, /\bRAPED\b/, /\bRαPED?\b/];
 
 var checkGihMessages = function(message) {
   var uc = message.toUpperCase();

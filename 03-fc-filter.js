@@ -6,7 +6,7 @@ var noGuests = function(x) {
 };
 
 var reRword = /\bRAPE/;
-var rePword = /\bPEDO\b/;
+var rePword = /\bPEDO(FILE)?\b/;
 var reEquals = /\s=\s/;
 var reTargets = /(VOLATILE=|MSTSP=|TSP=)/;
 
