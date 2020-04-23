@@ -1,7 +1,7 @@
 var gihPhrases = [/\bRAPE A BABY/, /\bRAPE BABIES/, /\bRAPES\b/, /\bRAPED\b/, /\bRαPED?\b/];
 
 var checkGihMessages = function(message) {
-  var uc = message.toUpperCase();
+  var uc = message.toUpperCase().replace(/\./g, '').replace(/,/, '');
  
   var result = null;
   gihPhrases.find(function(phrase) {
