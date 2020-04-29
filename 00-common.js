@@ -10,8 +10,8 @@ var unbanAccount = function(userUuid, username) {
 };
 
 var scheduleUnban = function(userUuid, username, banDuration) {
-  console.log("Scheduling unban for user: " + username);
-  setTimeout(unbanAccount, banDuration, userUuid, username);
+  console.log("Scheduling unban for user: " + username, " in " + banDuration + " minutes");
+  setTimeout(unbanAccount, banDuration * 1000 * 60, userUuid, username);
 };
 
 var timeoutDan = function(duration) {

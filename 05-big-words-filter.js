@@ -1,4 +1,4 @@
-var delayInterval = 15; // The interval in seconds
+var delayInterval = 20; // The interval in seconds
 var fbomb = 1;
 var nbomb = 2;
 var pbomb = 3;
@@ -6,7 +6,6 @@ var cword = 4;
 var rword = 5;
 var bigWordsViolationLedger = {};
 var expireInterval = 5 * 60; // 5 minutes not sure about that
-var lastWarningTimestamp = null;
 var pedoFilter = /\bPEDOS?\b/;
 var rwordFilter = /\bR[A@]PE[SD]?\b/;
 
@@ -57,23 +56,17 @@ var countViolations = function(username) {
 
 // Trying to keep trolls from using NC's warnings to spam
 var checkLastWarning = function(warningType, username, userUuid) {
-  console.log("lastWarningTimestamp: " + lastWarningTimestamp + ", Date.now() " + Date.now() / 1000);
   var ts = Date.now() / 1000;
 
   manageViolationLedger(username, ts);
 
   if (countViolations(username)) {
-    console.log("bigWordFilter: kicking username: " + username);
     // CometdModerator.kickAccount(userUuid);
     CometdModerator.banAccount(userUuid);
-    scheduleUnban(userUuid, username);
+    scheduleUnban(userUuid, username, 2);
   }
 
-  // Trying to keep trolls from using NC's warnings to spam
-  if (ts - lastWarningTimestamp > delayInterval) {
-    issueWarning(warningType, username, ts);
-    lastWarningTimestamp = Date.now() / 1000;
-  }
+  issueWarning(warningType, username, ts);
 };
 
 var bigWordsFilter = function(x) {
