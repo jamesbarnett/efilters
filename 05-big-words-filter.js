@@ -17,13 +17,13 @@ var checkWarningAndViolations = function(warningType, x) {
 
 var issueWarning = function(warningType, username, userUuid) {
   if (warningType == fbomb) {
-    CometdRoom.sendMessage("Language please, " + username + ", no F-Bombs here.");
+    sendNcMessage("Language please, " + username + ", no F-Bombs here.");
   } else if (warningType == nbomb) {
-    CometdRoom.sendMessage("Language please, " + username + ", no N-words here.");
+    sendNcMessage("Language please, " + username + ", no N-words here.");
   } else if (warningType == pbomb) {
-    CometdRoom.sendMessage("We don't discuss that topic, " + username);
+    sendNcMessage("We don't discuss that topic, " + username);
   } else if (warningType == cword) {
-    CometdRoom.sendMessage("Language please, " + username + ", no C-words here.");
+    sendNcMessage("Language please, " + username + ", no C-words here.");
   }
 };
 
