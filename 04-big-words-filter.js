@@ -35,11 +35,11 @@ var addViolation = function(username, timestamp) {
 
   bigWordsViolationLedger[username].unshift(timestamp);
 };
-  
+
 // Removes offenses older than the expire interval
 var expireViolations = function(username) {
   var now = Date.now() / 1000;
-  
+
   bigWordsViolationLedger[username] = bigWordsViolationLedger[username].filter(function(e) {
     return e - now < expireInterval;
   });
