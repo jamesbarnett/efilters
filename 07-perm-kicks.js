@@ -224,6 +224,7 @@ var blacklisted = [
                     "sweetcheeks90",
                     "talkingSnoopy",
                     "tbh wtf",
+                    "♡ ReneCR ♡",
                   ];
 
 var permkick = function(x) {
