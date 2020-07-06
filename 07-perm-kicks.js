@@ -27,6 +27,7 @@ var blacklisted = [
                     "Captain AssHole",
                     "CaveDweller",
                     "ChatTestDummy",
+                    "Coco2030",
                     "CodiGreen",
                     "CoffeeQueen",
                     "Colt1994",
@@ -121,6 +122,7 @@ var blacklisted = [
                     "Porkslut",
                     "PrinceKamron",
                     "Psycho101",
+                    "Raynoldo",
                     "Richard.Kranium",
                     "Ricky LeFleur",
                     "SLADE 99",
@@ -182,9 +184,10 @@ var blacklisted = [
                     "get shreked",
                     "hAret",
                     "harmonica",
+                    "horsie cullen",
                     "i hate life",
                     "i m a j",
-                    "iiwpdn",
+                    // "iiwdpn", -- This dude is on thin ice with me.
                     "immaqueer451",
                     "inquisitormaster<3",
                     "jabezvill",
@@ -225,6 +228,7 @@ var blacklisted = [
                     "sweetcheeks90",
                     "talkingSnoopy",
                     "tbh wtf",
+                    "volatile ❤ shawn",
                     "♡ ReneCR ♡",
                   ];
 

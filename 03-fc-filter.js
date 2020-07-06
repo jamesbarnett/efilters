@@ -10,11 +10,18 @@ var rePword = /\bPEDO(FILE)?\b/;
 var reEquals = /\s=\s/;
 var reTargets = /(VOLATILE=|MSTSP=|TSP=)/;
 
+const fword = String.fromCharCode(70, 85, 67, 75);
+const nword1 = String.fromCharCode(78, 73, 71, 71, 69, 82);
+const nword2 = String.fromCharCode(78, 73, 71, 71, 65);
+const _cword = String.fromCharCode(67, 85, 78, 84);
+
+
+String.fromCharCode(78, 73, 71, 71, 69, 82);
 // No F-bombs, N-Bombs, or C-Words in usernames
 var noOffensiveNicks = function(x) {
   var ucUserName = x.data.username.toUpperCase();
-  if (ucUserName.includes('FUCK') || ucUserName.includes('NIGGER') || 
-      ucUserName.includes('NIGGA') || ucUserName.includes('CUNT') ||
+  if (ucUserName.includes(fword) || ucUserName.includes(nword1) ||
+      ucUserName.includes(nword2) || ucUserName.includes(_cword) ||
       ucUserName.endsWith(":D") || ucUserName.match(reRword) ||
       ucUserName.match(rePword) || ucUserName.match(reEquals) ||
       ucUserName.match(reTargets)) {

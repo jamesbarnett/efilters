@@ -12,6 +12,7 @@ var rwordFilter = /\bR[A@]PE[SD]?\b/;
 
 var checkWarningAndViolations = function(warningType, x) {
   CometdModerator.removeAccountMessages(x.data.userUuid);
+  console.log("Language violation: ${x.data.username}: ${x.data.messageBody}");
   checkLastWarning(warningType, x.data.username, x.data.userUuid);
 };
 
@@ -76,19 +77,26 @@ var checkLastWarning = function(warningType, username, userUuid) {
   }
 };
 
+const FWORD = String.fromCharCode(70, 85, 67, 75);
+const NWORD1 = String.fromCharCode(78, 73, 71, 71, 69, 82);
+const NWORD2 = String.fromCharCode(78, 73, 71, 71, 65);
+const CWORD = String.fromCharCode(67, 85, 78, 84);
+
 var bigWordsFilter = function(x) {
   var message = x.data.messageBody.toUpperCase().replace(/\./g, '');
 
-  if (message.includes('FUCK')) {
+  if (message.includes(FWORD)) {
     checkWarningAndViolations(fbomb, x);
-  } else if (message.includes('NIGGER') || message.includes('NIGGA')) {
+  } else if (message.includes(NWORD1) || message.includes(NWORD2)) {
     checkWarningAndViolations(nbomb, x);
   } else if (message.match(pedoFilter)) {
     checkWarningAndViolations(pbomb, x);
   } else if (message.match(rwordFilter)) {
     checkWarningAndViolations(rword, x);
-  } else if (message.includes('CUNT')) {
+  } else if (message.includes(CWORD)) {
     checkWarningAndViolations(cword, x);
+  } else if (message.includes("RICEGUM")) {
+    checkWarningAndViolations(-1, x);
   }
 };
 
