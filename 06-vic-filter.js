@@ -26,9 +26,8 @@ var vicNicks = [
  */
 var vicFilter = function(x) {
   if (vicNicks.indexOf(x.data.username.toUpperCase()) != -1) {
-    // kickAccountAndRemoveMessages(x.data.userUuid);
-    tempBan(x.data.userUuid, x.data.username, 10 * 60 * 1000);
-    // console.log('vic-filter: Kicked user ' + x.data.username);
+    kickAccountAndRemoveMessages(x.data.userUuid);
+    console.log(`vic-filter: Kicked user ${x.data.username}`);
   }
 };
 
@@ -43,7 +42,7 @@ var emmaPleasFilter = function(x) {
 
   if (vicPhrases.indexOf(post) != -1) {
     kickAccountAndRemoveMessages(x.data.userUuid);
-    console.log('vic-filter: emmaPleas: Kicked user ' + x.data.username);
+    console.log(`vic-filter: emmaPleas: Kicked user ${x.data.username}`);
   }
 };
 

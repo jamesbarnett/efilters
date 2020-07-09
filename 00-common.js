@@ -6,11 +6,11 @@ var kickAccountAndRemovePosts = function(userUuid) {
 
 var unbanAccount = function(userUuid, username) {
   CometdModerator.unbanAccount(userUuid);
-  console.log("User " + username + " unbanned");
+  console.log(`User ${username} unbanned`);
 };
 
 var scheduleUnban = function(userUuid, username, banDuration) {
-  console.log("Scheduling unban for user: " + username);
+  console.log(`Scheduling unban for user: ${username}`);
   setTimeout(unbanAccount, banDuration, userUuid, username);
 };
 

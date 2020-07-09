@@ -12,19 +12,19 @@ var rwordFilter = /\bR[A@]PE[SD]?\b/;
 
 var checkWarningAndViolations = function(warningType, x) {
   CometdModerator.removeAccountMessages(x.data.userUuid);
-  console.log("Language violation: ${x.data.username}: ${x.data.messageBody}");
+  console.log(`Language violation: ${x.data.username}: ${x.data.messageBody}`);
   checkLastWarning(warningType, x.data.username, x.data.userUuid);
 };
 
 var issueWarning = function(warningType, username, userUuid) {
   if (warningType == fbomb) {
-    CometdRoom.sendMessage("Language please, " + username + ", no F-Bombs here.");
+    CometdRoom.sendMessage(`Language please, ${username}, no F-Bombs here.`);
   } else if (warningType == nbomb) {
-    CometdRoom.sendMessage("Language please, " + username + ", no N-words here.");
+    CometdRoom.sendMessage(`Language please, ${username}, no N-words here.`);
   } else if (warningType == pbomb) {
-    CometdRoom.sendMessage("We don't discuss that topic, " + username);
+    CometdRoom.sendMessage(`We don't discuss that topic, ${username}`);
   } else if (warningType == cword) {
-    CometdRoom.sendMessage("Language please, " + username + ", no C-words here.");
+    CometdRoom.sendMessage(`Language please, ${username}, no C-words here.`);
   }
 };
 
@@ -58,13 +58,13 @@ var countViolations = function(username) {
 
 // Trying to keep trolls from using NC's warnings to spam
 var checkLastWarning = function(warningType, username, userUuid) {
-  console.log("lastWarningTimestamp: " + lastWarningTimestamp + ", Date.now() " + Date.now() / 1000);
+  console.log(`lastWarningTimestamp: ${lastWarningTimestamp}, Date.now() ${Date.now() / 1000}`);
   var ts = Date.now() / 1000;
 
   manageViolationLedger(username, ts);
 
   if (countViolations(username)) {
-    console.log("bigWordFilter: kicking username: " + username);
+    console.log(`bigWordFilter: kicking username: ${username}`);
     // CometdModerator.kickAccount(userUuid);
     CometdModerator.banAccount(userUuid);
     scheduleUnban(userUuid, username);

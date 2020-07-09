@@ -29,7 +29,7 @@ var gihFilter = function(x) {
 
   if (checkGihMessages(message) || checkGihChars(message)) {
     CometdModerator.kickAccount(x.data.userUuid);
-    console.log("GiHFilter: kicking user: " + x.data.username);
+    console.log(`GiHFilter: kicking user: ${x.data.username}`);
     CometdModerator.removeAccountMessages(x.data.userUuid);
   }
 };

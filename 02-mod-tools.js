@@ -1,7 +1,7 @@
 var tempBan = function(userUuid, username, banDuration) {
   var durationInMs = banDuration * 60 * 1000;
   CometdModerator.removeAccountMessages(userUuid);
-  console.log("Banning account " + username + ", " + userUuid);
+  console.log(`Banning account ${username}, ${userUuid}`);
   scheduleUnban(userUuid, username, durationInMs);
 };
 
@@ -32,8 +32,8 @@ async function findUserBySearch(username) {
  */
 var timeoutUser = function(username, duration) {
   durationInMs = duration * 60 * 1000;
-  var user = findUserByName(username); 
-  
+  var user = findUserByName(username);
+
   if (user) {
     tempBan(user.userUuid, username, duration);
   } else {
@@ -48,7 +48,7 @@ var timeoutUser = function(username, duration) {
  */
 var autoClearBan = function(username, duration) {
   var user = findUserByName(username);
-  
+
   if (user) {
     scheduleUnban(username, user.userUuid, duration);
   } else {

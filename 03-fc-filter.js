@@ -26,7 +26,7 @@ var noOffensiveNicks = function(x) {
       ucUserName.match(rePword) || ucUserName.match(reEquals) ||
       ucUserName.match(reTargets)) {
     kickAccountAndRemovePosts(x.data.userUuid);
-    console.log("Kicked user for offensive nick:" + x.data.username);
+    console.log(`Kicked user for offensive nick: #{x.data.username}`);
   }
 };
 
